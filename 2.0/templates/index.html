@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus — NMIMS AI Assistant</title>
+    <meta name="description" content="Nexus is your AI-powered college assistant for NMIMS.">
+    <link rel="stylesheet" href="/static/style.css?v=1001">
+    <style>
+        /* Netflix-style Splash Screen */
+        .netflix-splash {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 99999;
+            pointer-events: none;
+            animation: fadeOutSplash 0.5s ease-in 3.5s forwards;
+        }
+
+        .netflix-text {
+            font-size: 80px;
+            font-weight: 800;
+            letter-spacing: 5px;
+            color: #e50914; /* Netflix Red */
+            transform: scale(0.5);
+            opacity: 0;
+            animation: netflixZoom 3.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+            text-shadow: 0 0 30px rgba(229, 9, 20, 0.8);
+        }
+
+        @keyframes netflixZoom {
+            0% { transform: scale(3); opacity: 0; filter: blur(10px); }
+            20% { transform: scale(1); opacity: 1; filter: blur(0px); }
+            80% { transform: scale(1.15); opacity: 1; filter: blur(0px); }
+            100% { transform: scale(2.5); opacity: 0; filter: blur(10px); }
+        }
+
+        @keyframes fadeOutSplash {
+            0% { opacity: 1; visibility: visible; }
+            100% { opacity: 0; visibility: hidden; }
+        }
+
+        .copy-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            margin-top: 10px;
+            padding: 4px 10px;
+            font-size: 12px;
+            color: #666;
+            background: rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .dark-theme .copy-btn {
+            color: #ccc;
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.2);
+        }
+        .copy-btn:hover {
+            background: rgba(0,0,0,0.1);
+        }
+        .dark-theme .copy-btn:hover {
+            background: rgba(255,255,255,0.15);
+        }
+    </style>
+</head>
+<body>
+
+<div class="netflix-splash" id="splashScreen">
+    <div class="netflix-text">NEXUS</div>
+</div>
+
+<div class="header">
+    <img src="/static/nmims-university-logo.png" class="logo" alt="NMIMS Logo">
+    <h1>NEXUS</h1>
+    <div class="header-actions">
+        <!-- Moved upload to chatbox -->
+    </div>
+</div>
+
+<div class="main">
+    <div class="sidebar">
+        <!-- History section -->
+        <div class="history-section">
+            <div class="history-header">
+                <span>Recent Chats</span>
+                <button class="new-chat-btn" id="newChatBtn" title="New chat">+</button>
+            </div>
+            <div class="history-list" id="historyList">
+                <div class="history-empty">No history yet</div>
+            </div>
+        </div>
+
+        <div class="account" id="accountBtn">
+            <img src="/static/default_user.png" class="account-icon header-avatar" id="sidebarAvatar" width="36" height="36" alt="Profile">
+            <span class="header-username" id="sidebarUsername" style="color: #333; font-weight: 700;">Student</span>
+            <div class="user-dropdown" id="userDropdown" style="top: auto; bottom: calc(100% + 15px); left: 0; right: auto; padding-right: 15px;">
+                <label for="avatarUploadInput" class="dropdown-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                    Change Photo
+                </label>
+                <input type="file" id="avatarUploadInput" accept=".png,.jpg,.jpeg,.webp" style="display:none">
+                <div class="dropdown-divider"></div>
+                <button class="dropdown-item" onclick="toggleDarkMode()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                    Toggle Theme
+                </button>
+                <div class="dropdown-divider"></div>
+                <button class="dropdown-item logout" onclick="clearHistory()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                    Clear History
+                </button>
+                <div class="dropdown-divider"></div>
+                <button class="dropdown-item logout" onclick="logout()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                    Sign Out
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="chat-header">
+            <h2>NEXUS</h2>
+            <p id="chatHeaderSubtitle">How can I help?</p>
+        </div>
+
+        <div class="messages" id="messagesContainer">
+            <div class="message bot-message">Hello! How can I help you today?</div>
+        </div>
+
+        <div class="chatbox">
+            <label for="fileUploadInput" class="attach-btn" id="uploadLabel" title="Attach file">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="cursor:pointer; color:#888;"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+            </label>
+            <input type="file" id="fileUploadInput" accept=".pdf,.png,.jpg,.jpeg,.webp" style="display:none">
+            <input type="text" id="chatInput" placeholder="Type your query here..." autocomplete="off">
+            <button id="sendButton">Send</button>
+        </div>
+    </div>
+</div>
+
+<div class="upload-toast" id="uploadToast"></div>
+
+<script>
+// ── Auth guard ────────────────────────────────────────────────────────────────
+const token = localStorage.getItem('nexus_token');
+if (!token) window.location.href = '/login';
+
+const authHeaders = () => ({ 'Authorization': `Bearer ${token}` });
+
+// ── State ─────────────────────────────────────────────────────────────────────
+let conversationHistory = [];
+let currentSessionId    = null;
+let currentTab          = 'FAQs';
+
+// ── DOM refs ──────────────────────────────────────────────────────────────────
+const chatInput          = document.getElementById('chatInput');
+const sendButton         = document.getElementById('sendButton');
+const messagesDiv        = document.getElementById('messagesContainer');
+const suggestionsDiv     = document.getElementById('suggestions');
+const chatHeaderSubtitle = document.getElementById('chatHeaderSubtitle');
+const historyList        = document.getElementById('historyList');
+const uploadToast        = document.getElementById('uploadToast');
+
+// ── Bootstrap: load user + history ───────────────────────────────────────────
+async function bootstrap() {
+    try {
+        const res  = await fetch('/auth/me', { headers: authHeaders() });
+        if (res.status === 401) { logout(); return; }
+        const user = await res.json();
+
+        document.getElementById('sidebarUsername').textContent = user.username;
+        if (user.avatar) {
+            document.getElementById('sidebarAvatar').src = user.avatar + '?t=' + Date.now();
+        }
+
+        await loadHistory();
+        await createNewSession();   // Start a fresh session on load
+    } catch(e) { console.warn('Bootstrap error', e); }
+}
+
+// ── Session management ────────────────────────────────────────────────────────
+async function createNewSession() {
+    try {
+        const fd = new FormData();
+        fd.append('tab_name', currentTab);
+        const res  = await fetch('/history/session', { method: 'POST', headers: authHeaders(), body: fd });
+        const data = await res.json();
+        currentSessionId = data.session_id;
+    } catch(e) { currentSessionId = null; }
+}
+
+async function loadHistory() {
+    try {
+        const res      = await fetch('/history', { headers: authHeaders() });
+        const sessions = await res.json();
+        renderHistory(sessions);
+    } catch(e) { /* silently skip */ }
+}
+
+function renderHistory(sessions) {
+    if (!sessions.length) {
+        historyList.innerHTML = '<div class="history-empty">No history yet</div>';
+        return;
+    }
+    historyList.innerHTML = sessions.map(s => `
+        <div class="history-item" data-id="${s.id}" onclick="loadSession(${s.id},'${s.tab_name}')">
+            <span class="history-title">${escapeHtml(s.title)}</span>
+        </div>
+    `).join('');
+}
+
+async function loadSession(sessionId, tabName) {
+    try {
+        const res  = await fetch(`/history/${sessionId}`, { headers: authHeaders() });
+        const data = await res.json();
+
+        currentTab       = "General";
+        currentSessionId = sessionId;
+        conversationHistory = [];
+
+        messagesDiv.innerHTML = '';
+        chatHeaderSubtitle.innerText = 'How can I help?';
+
+        data.messages.forEach(m => {
+            conversationHistory.push({ role: m.role, content: m.content });
+            const msgDiv = appendMessage(formatBotText(m.content), m.role === 'user');
+            
+            if (m.role === 'assistant') {
+                const copyBtn = document.createElement('button');
+                copyBtn.className = 'copy-btn';
+                copyBtn.innerHTML = '📋 Copy';
+                copyBtn.onclick = () => {
+                    navigator.clipboard.writeText(m.content);
+                    copyBtn.innerHTML = '✅ Copied!';
+                    setTimeout(() => copyBtn.innerHTML = '📋 Copy', 2000);
+                };
+                msgDiv.appendChild(copyBtn);
+            }
+        });
+    } catch(e) { console.warn('Load session error', e); }
+}
+
+// ── Chat helpers ──────────────────────────────────────────────────────────────
+function escapeHtml(str) {
+    return String(str).replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function appendMessage(html, isUser, isLowConfidence = false) {
+    const div = document.createElement('div');
+    div.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+    if (isLowConfidence) div.classList.add('low-confidence');
+    div.innerHTML = html;
+    messagesDiv.appendChild(div);
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    return div;
+}
+
+function linkifyFiles(text) {
+    return text.replace(/([A-Za-z0-9 _\-]+\.pdf)/gi, (match) => {
+        const encoded = encodeURIComponent(match.trim());
+        return `<a class="file-link" href="/files/database/${encoded}" target="_blank" download>
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            ${match.trim()}</a>`;
+    });
+}
+
+function formatBotText(raw) {
+    return linkifyFiles(raw.replace(/\n/g,'<br/>'));
+}
+
+function isLowConfidenceAnswer(text) {
+    return ["not confident enough","please contact the college office",
+            "i don't have that information","i found some information that might be related"]
+        .some(p => text.toLowerCase().includes(p));
+}
+
+// ── Send message ──────────────────────────────────────────────────────────────
+async function sendMessage() {
+    const text = chatInput.value.trim();
+    if (!text) return;
+
+    appendMessage(escapeHtml(text), true);
+    chatInput.value = '';
+    
+    // Disable inputs while AI responds
+    sendButton.disabled = true;
+    chatInput.disabled = true;
+    fileInput.disabled = true;
+    uploadLabel.style.pointerEvents = 'none';
+    uploadLabel.style.opacity = '0.5';
+
+    conversationHistory.push({ role: 'user', content: text });
+
+    const botMsg = appendMessage(
+        `<div class="typing-indicator"><span></span><span></span><span></span></div>`, false
+    );
+
+    try {
+        const fd = new FormData();
+        fd.append('query', text);
+        fd.append('history', JSON.stringify(conversationHistory));
+        if (currentSessionId) fd.append('session_id', currentSessionId);
+
+        const headers = token ? authHeaders() : {};
+        const res     = await fetch('/chat', { method: 'POST', headers, body: fd });
+        const data    = await res.json();
+
+        const lowConf = isLowConfidenceAnswer(data.answer);
+        botMsg.classList.toggle('low-confidence', lowConf);
+
+        let html = formatBotText(data.answer);
+        if (data.source_heading) html += `<br/><span class="source-tag">📍 ${data.source_heading}</span>`;
+        if (lowConf) html += `<br/><span class="confidence-warning">⚠️ Low confidence — verify with college office</span>`;
+
+        botMsg.innerHTML = html;
+        
+        // Add Copy Button
+        const copyBtn = document.createElement('button');
+        copyBtn.className = 'copy-btn';
+        copyBtn.innerHTML = '📋 Copy';
+        copyBtn.onclick = () => {
+            navigator.clipboard.writeText(data.answer);
+            copyBtn.innerHTML = '✅ Copied!';
+            setTimeout(() => copyBtn.innerHTML = '📋 Copy', 2000);
+        };
+        botMsg.appendChild(copyBtn);
+        
+        conversationHistory.push({ role: 'assistant', content: data.answer });
+        if (conversationHistory.length > 12) conversationHistory = conversationHistory.slice(-12);
+
+        // Refresh history panel after first exchange
+        if (conversationHistory.length === 2) loadHistory();
+
+    } catch {
+        botMsg.innerHTML = `<span style="color:#e53935;">⚠️ Cannot connect to server. Is api.py running?</span>`;
+    }
+
+    // Re-enable inputs
+    sendButton.disabled = false;
+    chatInput.disabled = false;
+    fileInput.disabled = false;
+    uploadLabel.style.pointerEvents = 'auto';
+    uploadLabel.style.opacity = '1';
+    chatInput.focus();
+}
+
+sendButton.addEventListener('click', sendMessage);
+chatInput.addEventListener('keypress', e => { if (e.key === 'Enter') sendMessage(); });
+
+// ── Chat Flow ─────────────────────────────────────────────────────────────
+document.getElementById('newChatBtn').addEventListener('click', async () => {
+    currentTab = "General";
+    conversationHistory = [];
+    messagesDiv.innerHTML = '';
+    appendMessage('Hello! How can I help you today?', false);
+    chatHeaderSubtitle.innerText = 'How can I help?';
+    await createNewSession();
+    loadHistory();
+});
+
+
+// ── User menu dropdown ────────────────────────────────────────────────────────
+document.getElementById('accountBtn').addEventListener('click', () => {
+    document.getElementById('userDropdown').classList.toggle('open');
+});
+document.addEventListener('click', (e) => {
+    if (!document.getElementById('accountBtn').contains(e.target))
+        document.getElementById('userDropdown').classList.remove('open');
+});
+
+function logout() {
+    localStorage.removeItem('nexus_token');
+    localStorage.removeItem('nexus_user');
+    window.location.href = '/login';
+}
+
+function toggleDarkMode() {
+    const isDark = document.body.classList.toggle('dark-theme');
+    localStorage.setItem('nexus_dark_mode', isDark);
+}
+
+// Load dark mode preference on load
+if (localStorage.getItem('nexus_dark_mode') === 'true') {
+    document.body.classList.add('dark-theme');
+}
+
+async function clearHistory() {
+    if(!confirm("Are you sure you want to clear your entire chat history?")) return;
+    try {
+        const res = await fetch('/history', { method: 'DELETE', headers: authHeaders() });
+        if(res.ok) {
+            showToast('✅ History cleared!', 'success');
+            conversationHistory = [];
+            messagesDiv.innerHTML = '';
+            await createNewSession();
+            loadHistory();
+        }
+    } catch { showToast('❌ Failed to clear history.', 'error'); }
+}
+
+// ── Avatar upload ─────────────────────────────────────────────────────────────
+document.getElementById('avatarUploadInput').addEventListener('change', async () => {
+    const file = document.getElementById('avatarUploadInput').files[0];
+    if (!file) return;
+    const fd = new FormData();
+    fd.append('file', file);
+    showToast('📤 Uploading photo…', 'info');
+    try {
+        const res  = await fetch('/user/avatar', { method: 'POST', headers: authHeaders(), body: fd });
+        const data = await res.json();
+        if (data.avatar) {
+            const url = data.avatar + '?t=' + Date.now();
+            document.getElementById('sidebarAvatar').src = url;
+            showToast('✅ Profile photo updated!', 'success');
+        }
+    } catch { showToast('❌ Avatar upload failed.', 'error'); }
+    document.getElementById('userDropdown').classList.remove('open');
+});
+
+// ── Knowledge-base file upload ────────────────────────────────────────────────
+const fileInput    = document.getElementById('fileUploadInput');
+const uploadLabel  = document.getElementById('uploadLabel');
+
+fileInput.addEventListener('change', async () => {
+    const file = fileInput.files[0];
+    if (!file) return;
+    
+    // Disable UI
+    uploadLabel.classList.add('uploading');
+    uploadLabel.style.pointerEvents = 'none';
+    uploadLabel.style.opacity = '0.5';
+    fileInput.disabled = true;
+    chatInput.disabled = true;
+    sendButton.disabled = true;
+    const oldPlaceholder = chatInput.placeholder;
+    chatInput.placeholder = 'Uploading document...';
+    
+    showToast(`📤 Uploading "${file.name}"…`, 'info');
+    const fd = new FormData();
+    fd.append('file', file);
+    try {
+        const headers = token ? authHeaders() : {};
+        const res  = await fetch('/upload', { method: 'POST', headers, body: fd });
+        const data = await res.json();
+        if (data.status === 'success') {
+            showToast(`✅ ${data.message}`, 'success');
+            appendMessage(`📂 <strong>${file.name}</strong> uploaded and added to knowledge base.`, false);
+        } else {
+            showToast(`❌ ${data.detail || 'Upload failed'}`, 'error');
+        }
+    } catch { showToast('❌ Upload error. Is api.py running?', 'error'); }
+    finally {
+        // Enable UI
+        uploadLabel.classList.remove('uploading');
+        uploadLabel.style.pointerEvents = 'auto';
+        uploadLabel.style.opacity = '1';
+        fileInput.disabled = false;
+        chatInput.disabled = false;
+        sendButton.disabled = false;
+        chatInput.placeholder = oldPlaceholder;
+        fileInput.value = '';
+    }
+});
+
+// ── Toast ─────────────────────────────────────────────────────────────────────
+function showToast(msg, type = 'info') {
+    uploadToast.textContent = msg;
+    uploadToast.className = `upload-toast show ${type}`;
+    setTimeout(() => uploadToast.classList.remove('show'), 3500);
+}
+
+// ── Splash ────────────────────────────────────────────────────────────────────
+window.addEventListener('load', () => {
+    setTimeout(() => document.getElementById('splashScreen').classList.add('hidden'), 1800);
+    bootstrap();
+});
+</script>
+</body>
+</html>

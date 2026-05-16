@@ -1,0 +1,40 @@
+CONTENT FROM Revised  Time Table BTI CE Sem VI Div D.pdf w.e.f. 12.01.2026.pdf:
+
+SVKM's NMIMS
+Mukesh Patel School of Technology Management & Engineering
+(Mumbai Campus) A.Y 2025-26
+
+Program: BTech Integrated (Computer Engineering)
+Sem: VI Div: D
+W.e.f.: 12th January 2026
+
+Time/Day | Monday | Tuesday | Wednesday | Thursday | Friday | Saturday
+---------|--------|---------|-----------|----------|--------|---------
+8:00-9:00 | EUI [VPB] CR-406 | DT [VSV] CR-404 | | | | EUI [VTM] D1 CL-2
+9:00-10:00 | EUI [VPB] CR-406 | FOE [RMI] CR-403 | DT [VSV] CR-404 | | |
+10:00-11:00 | BREAK | LADE [SDC] CR-403 | BREAK | | | EUI [VJM] D2 CL-1
+11:00-12:00 | LADE [SDC] D1 CR-405 | FOE [RMI] D2 CL-504 | PE [KGU] CR-407 | CG [JGO] CR-108 | CG [JGO] CR-404 | CG [JGO] CR-406 |
+12:00-1:00 | BREAK | FOE [RMI] CR-108 | FOE [RMI] CR-407 | LADE [SDC] CR-407 |
+1:00-2:00 | | | BREAK | BREAK | |
+2:00-3:00 | | | CG [JGO] D2 CL-1 | EC [VSN] D1 CL-2 | CG [JGO] D1 DE-Lab | EC [VSN] D2 CL-403 |
+3:00-4:00 | | | | | |
+4:00-5:00 | | | LADE [SDC] CR-407 | LADE [SDC] CR-406 | FOE [PMA] D1 CL-402 |
+5:00-6:00 | | | EUI [VPB] CR-407 | | |
+
+Initial | Faculty name | Lab details | Initial | Subject details
+-------|--------------|-------------|---------|--------------------
+SDC | Dr. Shilpa D'Cunha | CL-1 Computer Lab 1, 1st floor | LADE | Linear Algebra and Differential Equations
+JGO | Prof. Jesleena Gonsalves | CL-2 Computer Lab 2, 1st floor | CG | Computer Graphics
+PMA | Dr. Pallavi Mangrulkar | CL-402 Computer Lab 402, 4th floor | FOE | Fundamentals of E-Commerce
+VTM | Prof. Tanay Modi | CL-403 Computer lab 403, 4th floor | EUI | Event Driven & UI Programming
+VSV | Prof. Saumitra Vaidya | CL-504 Computer Lab 504, 5th floor | DT | Design Thinking
+VSN | Prof. Sharon Nadar | DE-Lab Digital Electronics Lab, 4th Floor | EC | English Communication
+KGU | Prof. Kanchan Gupta | | PE | Professional Ethics
+VJM | Prof. Jash Mehta | | |
+RMI | Dr. Ravita Mishra | | |
+VPB | Dr. Pramod Bide | | |
+
+Date: 10/01/2026
+[Dr. Dhirendra Mishra]
+Dean
+[Dr. Koteswararao Anne]

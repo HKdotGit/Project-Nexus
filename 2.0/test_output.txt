@@ -1,0 +1,103 @@
+--- RAW CHUNKS TEXT ---
+
+Chunk 0 (Score: 1.1437034130096435):
+CONTENT FROM Revised Time Table BTI CE Sem VI Div D.pdf w.e.f.
+----------------------------------------
+
+Chunk 1 (Score: 0.9191862761974334):
+The Class Representative serves as an important link between his/her division, the faculty & administration. The CRs for each division are selected by class vote for students who wish to nominate themselves for the post. The major roles & responsibilities include: i. Serving as the sole point of contact b etween faculty & students ii. Co-ordinating the scheduling of lectures, assignments & formation of groups iii. Resolving student grievances iv. Relationship building & co- ordinating with CRs from other divisions v. CRs cannot cancel / reschedule lectures directly with the Faculty vi. Any additional responsibility assigned by school heads.
+----------------------------------------
+
+Chunk 2 (Score: 0.8787515878677368):
+Sports Day, Republic Day, Independence Day, G uest lectures, C ompulsory workshops, CEO Series, and other events as intimated on the Student Portal / N otice board/ email. A record of attendance will be kept. The school/NMIMS reserves the right to declare compulsory attendance for any event on or off campus. Absenteeism in events for which attendance is compulsory will be taken seriously and will be communicated / displayed on the Student Portal / N otice Board/ email from time to time and / or remark on the transcript or any other decision by the management.
+----------------------------------------
+
+Chunk 3 (Score: 0.8731612145900727):
+W.e.f.: 12th January 2026
+Time/Day | Monday | Tuesday | Wednesday | Thursday | Friday | Saturday
+---|---|---|---|---|---|---
+8:00-9:00 | EUI [VPB] CR-406 | DT [VSV] CR-404 | | | | EUI [VTM] D1 CL-2
+9:00-10:00 | EUI [VPB] CR-406 | FOE [RMI] CR-403 | DT [VSV] CR-404 | | |
+10:00-11:00 | BREAK | LADE [SDC] CR-403 | BREAK | | | EUI [VJM] D2 CL-1
+11:00-12:00 | LADE [SDC] D1 CR-405 | FOE [RMI] D2 CL-504 | PE [KGU] CR-407 | CG [JGO] CR-108 | CG [JGO] CR-404 | CG [JGO] CR-406 |
+12:00-1:00 | BREAK | FOE [RMI] CR-108 | FOE [RMI] CR-407 | LADE [SDC] CR-407 |
+1:00-2:00 | | | BREAK | BREAK | |
+2:00-3:00 | | | CG [JGO] D2 CL-1 | EC [VSN] D1 CL-2 | CG [JGO] D1 DE-Lab | EC [VSN] D2 CL-403 |
+3:00-4:00 | | | | | |
+4:00-5:00 | | | LADE [SDC] CR-407 | LADE [SDC] CR-406 | FOE [PMA] D1 CL-402 |
+5:00-6:00 | | | EUI [VPB] CR-407 | | |
+Initial | Faculty name | Lab details | Initial | Subject details
+---|---|---|---|---
+SDC | Dr.
+----------------------------------------
+
+Chunk 4 (Score: 0.8038280248641968):
+Sharon Nadar | DE-Lab | Digital Electronics Lab, 4th Floor | EC | English Communication
+KGU | Prof.
+Kanchan Gupta | | PE | Professional Ethics
+VJM | Prof.
+Jash Mehta | | |
+RMI | Dr.
+Ravita Mishra | | |
+VPB | Dr.
+Pramod Bide | | |
+Date: 10/01/2026
+[Dr.
+----------------------------------------
+
+--- PROMPT GENERATED ---
+You are a helpful college AI assistant named Nexus.
+
+INSTRUCTIONS:
+1. Be conversational and natural. Avoid repeating your introduction.
+2. Use the provided context AND conversation history.
+3. If the answer involves a specific faculty member,  provide their seating/office details precisely as shown in the context.
+4. If the student asks for a form (e.g. Leave Application), state the exact filename (e.g. Student Leave Application.pdf) so the system can provide a download link.
+5. If you are unsure or the context is sparse, admit it and suggest the college office.
+6. For timetables, look for Markdown tables in the context and explain the schedule clearly.
+
+Conversation History:
+
+
+Context from Knowledge Base:
+[Section: General] [Source: Revised  Time Table BTI CE Sem VI Div D.pdf w.e.f. 12.01.2026_ocr.txt]
+CONTENT FROM Revised Time Table BTI CE Sem VI Div D.pdf w.e.f.
+
+[Section: 18 Roles and Responsibilities of Class Representative an d Student Council > 18.1 Class Representative:] [Source: SRB 2025.pdf]
+The Class Representative serves as an important link between his/her division, the faculty & administration. The CRs for each division are selected by class vote for students who wish to nominate themselves for the post. The major roles & responsibilities include: i. Serving as the sole point of contact b etween faculty & students ii. Co-ordinating the scheduling of lectures, assignments & formation of groups iii. Resolving student grievances iv. Relationship building & co- ordinating with CRs from other divisions v. CRs cannot cancel / reschedule lectures directly with the Faculty vi. Any additional responsibility assigned by school heads.
+
+[Section: 2 Any other action(s) that result in unreasonable interference with > 2.24 Punctuality > 2.24.2 Students are required to be present for all events of school/ NMIMS University, including the Convocation,] [Source: SRB 2025.pdf]
+Sports Day, Republic Day, Independence Day, G uest lectures, C ompulsory workshops, CEO Series, and other events as intimated on the Student Portal / N otice board/ email. A record of attendance will be kept. The school/NMIMS reserves the right to declare compulsory attendance for any event on or off campus. Absenteeism in events for which attendance is compulsory will be taken seriously and will be communicated / displayed on the Student Portal / N otice Board/ email from time to time and / or remark on the transcript or any other decision by the management.
+
+[Section: Sem: VI Div: D] [Source: Revised  Time Table BTI CE Sem VI Div D.pdf w.e.f. 12.01.2026_ocr.txt]
+W.e.f.: 12th January 2026
+Time/Day | Monday | Tuesday | Wednesday | Thursday | Friday | Saturday
+---|---|---|---|---|---|---
+8:00-9:00 | EUI [VPB] CR-406 | DT [VSV] CR-404 | | | | EUI [VTM] D1 CL-2
+9:00-10:00 | EUI [VPB] CR-406 | FOE [RMI] CR-403 | DT [VSV] CR-404 | | |
+10:00-11:00 | BREAK | LADE [SDC] CR-403 | BREAK | | | EUI [VJM] D2 CL-1
+11:00-12:00 | LADE [SDC] D1 CR-405 | FOE [RMI] D2 CL-504 | PE [KGU] CR-407 | CG [JGO] CR-108 | CG [JGO] CR-404 | CG [JGO] CR-406 |
+12:00-1:00 | BREAK | FOE [RMI] CR-108 | FOE [RMI] CR-407 | LADE [SDC] CR-407 |
+1:00-2:00 | | | BREAK | BREAK | |
+2:00-3:00 | | | CG [JGO] D2 CL-1 | EC [VSN] D1 CL-2 | CG [JGO] D1 DE-Lab | EC [VSN] D2 CL-403 |
+3:00-4:00 | | | | | |
+4:00-5:00 | | | LADE [SDC] CR-407 | LADE [SDC] CR-406 | FOE [PMA] D1 CL-402 |
+5:00-6:00 | | | EUI [VPB] CR-407 | | |
+Initial | Faculty name | Lab details | Initial | Subject details
+---|---|---|---|---
+SDC | Dr. Sharon Nadar | DE-Lab | Digital Electronics Lab, 4th Floor | EC | English Communication
+KGU | Prof.
+Kanchan Gupta | | PE | Professional Ethics
+VJM | Prof.
+Jash Mehta | | |
+RMI | Dr.
+Ravita Mishra | | |
+VPB | Dr.
+Pramod Bide | | |
+Date: 10/01/2026
+[Dr.
+
+
+Current Question: which lecture is from 8 am to 9 am on monday in BTI Div. D timetable ?
+
+Answer:

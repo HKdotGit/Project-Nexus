@@ -1,0 +1,70 @@
+CONTENT FROM GroupNo (3).pdf:
+
+NEXUS - NMIMS AI ASSISTANT
+
+ABSTRACT / INTRODUCTION
+NEXUS is an Al-powered conversational assistant built for NMIMS University, giving students and faculty instant access to institutional knowledge. Powered by a Retrieval-Augmented Generation (RAG) architecture, NEXUS retrieves contextually accurate answers directly from official university documents - including the Student Rights Book (SRB) and academic handbooks and presents every response with inline source citations. The system eliminates guesswork and reduces dependency on administrative channels for routine information queries, offering a seamless 24/7 conversational experience for the NMIMS community.
+
+MOTIVATION
+Students routinely spend significant time navigating lengthy university PDFs to locate specific policies on attendance, examinations, fees, or grievance procedures. Existing portals are static, non-conversational, and require manual navigation through multiple sections. NEXUS addresses this gap by delivering authoritative, cited answers in seconds, available 24/7 without requiring familiarity with portal structure or dependency on office hours and administrative staff availability, making information access equitable for all.
+
+OBJECTIVES
+1. Build a conversational Al assistant tailored to NMIMS institutional documents.
+2. Implement a RAG pipeline that retrieves accurate answers from official university PDFs.
+3. Surface inline document citations so users can verify every response at source.
+4. Deliver an intuitive, responsive web interface accessible to all NMIMS students.
+5. Ensure hallucination-free, source-grounded answers through structured SRB design.
+6. Support multi-turn sessions with contextual memory for seamless follow-up queries.
+
+METHODOLOGY
+• Designed a 3-layer architecture: Frontend (UI), Backend (processing engine), Database (SRB).
+• Implemented a query processing pipeline: input preprocessing → keyword extraction → response matching.
+• Used rule-based + keyword matching approach for intent detection and response generation.
+• Developed a Structured Response Base (SRB) for storing admission-related data with consistent retrieval.
+• Integrated modules: chat history, user profile, file upload, dark mode UI for enhanced usability.
+• Performed testing using multiple query scenarios - including edge cases and ambiguous inputs for thorough validation.
+
+RESULTS & DISCUSSION
+• Chatbot successfully handles queries related to courses, fees, eligibility, and attendance.
+• Achieves fast response time (real-time interaction) with high accuracy for predefined queries.
+• SRB improves retrieval efficiency and ensures consistent, hallucination-free responses across repeated queries.
+• Features like chat history and UI enhancements significantly improve overall user experience and accessibility.
+• Limitations: struggles with complex/ambiguous queries and lacks real-time data updates from live university systems.
+• Overall system provides a centralised, efficient, and user-friendly solution for institutional information access.
+
+LITERATURE REVIEW/BACKGROUND
+RAG Systems: Lewis et al. (2020) pioneered Retrieval-Augmented Generation, combining dense passage retrieval with seq2seq generation to ground model responses in verifiable documents. Later work improved chunking, re-ranking, and embedding quality for domain-specific corpora.
+
+University Chatbots: Smutny & Schreiberova (2020) reviewed academic chatbots and found rule-based systems inadequate for open-domain Q&A. LLM-backed assistants achieve substantially higher accuracy on domain-specific institutional queries with reduced hallucination rates.
+
+Vector Databases: Johnson et al. (2019) introduced FAISS for efficient billion-scale similarity search. ChromaDB extends this with metadata filtering, making both tools central to modern RAG pipelines.
+
+Knowledge Bases: Structured Response Bases (SRBs) are widely used in enterprise chatbots to ensure consistency and factual correctness for high-frequency predefined queries (Adamopoulou & Moussiades, 2020).
+
+KEY FEATURES
+• Conversational Interface: Natural language Q&A with multi-turn session support and context-aware follow-up handling.
+• Source Citations: Every response links directly to the originating document section in the SRB or uploaded PDF.
+• Chat History: Full conversation logs persisted per user for continuity across sessions.
+• File Upload: Students can upload custom PDFs for on-demand document-specific queries beyond the default corpus.
+• Dark Mode UI: Accessible, responsive React.js interface with light/dark theme toggle for comfortable extended use.
+• User Profiles: Personalised experience with authentication, history management, and role-based access control.
+
+Fig 2: Sign-In screen (left) Live chat interface with source citation (right)
+
+FUTURE SCOPE
+Advanced AI Models
+Expanded Use Cases
+Real-Time Database Integration
+Future Scope of NEXUS Chatbot System
+Multilingual Support
+Voice-Based Interaction
+
+Fig 3: Future scope - Advanced AI, Real-Time DB, Multilingual & Voice-Based Interaction
+
+REFERENCES / ACKNOWLEDGEMENTS
+
+70322300130 | Hitanksh Gala
+70322300075 | Kavya Vasa
+70322300111 | Hrishikesh Kunde
+MENTOR: Prof. Artika Singh
+NMIMS MPSTME
